@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import cn.sinapp.txai.domain.ApiResult;
 
@@ -16,13 +16,13 @@ public class OCRService extends BaseApiService {
 	
 	private static final String creditcardocrUrl = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_creditcardocr";
 	
-	public ApiResult<Gson> creditcardocr(String base64Image) throws UnsupportedEncodingException{
+	public ApiResult<Map> creditcardocr(String base64Image) throws UnsupportedEncodingException{
 		
 		Map<String,String> params = buildCommonParam();
 		
 		params.put("image", base64Image);
 		
-		ApiResult<Gson> apiResult = postApi(creditcardocrUrl, params);
+		ApiResult<Map> apiResult = postApi(creditcardocrUrl, params);
 
 		return apiResult;
 	}

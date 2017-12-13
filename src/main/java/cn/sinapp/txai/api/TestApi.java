@@ -1,8 +1,10 @@
 package cn.sinapp.txai.api;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import cn.sinapp.meutils.util.ImageUtil;
 import cn.sinapp.txai.domain.ApiResult;
@@ -46,7 +48,7 @@ public class TestApi {
 		
 		OCRService ocrService = new OCRService();
 		
-		ApiResult<Gson> apiResult = ocrService.creditcardocr(base64Image);
+		ApiResult<Map> apiResult = ocrService.creditcardocr(base64Image);
 		
 		System.out.println(apiResult);
 		

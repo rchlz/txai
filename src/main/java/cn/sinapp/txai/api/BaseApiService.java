@@ -2,13 +2,17 @@ package cn.sinapp.txai.api;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import cn.sinapp.meutils.util.HttpUtil;
 import cn.sinapp.meutils.util.RandomUtil;
@@ -22,6 +26,7 @@ public class BaseApiService {
 	
 	protected static String AppKey = "";
 	
+	@PostConstruct
 	void init() throws IOException{
 		Properties prop = new Properties();  
         
@@ -49,7 +54,7 @@ public class BaseApiService {
 		return params;
 	}
 	
-	protected ApiResult postApi(String url, Map<String,String> params) throws UnsupportedEncodingException{
+	protected <T> ApiResult<T> postApi(String url, Map<String,String> params) throws UnsupportedEncodingException{
 		
 		if(StringUtils.isEmpty(url)){
 			return null;
@@ -68,8 +73,9 @@ public class BaseApiService {
 		String jsonStr = HttpUtil.post(url, params);
 		
 		Gson gson = new Gson();
+		Type type = new TypeToken<ApiResult<T>>() {}.getType();  
 		
-		return gson.fromJson(jsonStr, ApiResult.class);
+		return gson.fromJson(jsonStr, type);
 		
 	} 
 	

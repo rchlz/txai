@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
-
 import cn.sinapp.txai.domain.ApiResult;
 
 
@@ -25,14 +23,14 @@ public class ImageEffectService extends BaseApiService {
 	
 	
 	
-	public ApiResult<Gson> facemerge(int modelId, String base64Image) throws UnsupportedEncodingException{
+	public ApiResult<Map> facemerge(int modelId, String base64Image) throws UnsupportedEncodingException{
 		
 		Map<String,String> params = buildCommonParam();
 		
 		params.put("model", String.valueOf(modelId));
 		params.put("image", base64Image);
 		
-		ApiResult<Gson> apiResult = postApi(facemergeUrl, params);
+		ApiResult<Map> apiResult = postApi(facemergeUrl, params);
 		
 		
 		return apiResult;
@@ -40,53 +38,53 @@ public class ImageEffectService extends BaseApiService {
 	}
 	
 	
-	public ApiResult<Gson> facesticker(int stickerId, String base64Image) throws UnsupportedEncodingException{
+	public ApiResult<Map> facesticker(int stickerId, String base64Image) throws UnsupportedEncodingException{
 		
 		Map<String,String> params = buildCommonParam();
 		
 		params.put("sticker", String.valueOf(stickerId));
 		params.put("image", base64Image);
 		
-		ApiResult<Gson> apiResult = postApi(facestickerUrl, params);
+		ApiResult<Map> apiResult = postApi(facestickerUrl, params);
 		
 		return apiResult;
 		
 	}
 	
-	public ApiResult<Gson> facedecoration(int decorationId, String base64Image) throws UnsupportedEncodingException{
+	public ApiResult<Map> facedecoration(int decorationId, String base64Image) throws UnsupportedEncodingException{
 		
 		Map<String,String> params = buildCommonParam();
 		
 		params.put("decoration", String.valueOf(decorationId));
 		params.put("image", base64Image);
 		
-		ApiResult<Gson> apiResult = postApi(facedecorationUrl, params);
+		ApiResult<Map> apiResult = postApi(facedecorationUrl, params);
 		
 		return apiResult;
 		
 	}
 	
-	public ApiResult<Gson> imgfilter(int filterId, String base64Image) throws UnsupportedEncodingException{
+	public ApiResult<Map> imgfilter(int filterId, String base64Image) throws UnsupportedEncodingException{
 		
 		Map<String,String> params = buildCommonParam();
 		
 		params.put("filter", String.valueOf(filterId));
 		params.put("image", base64Image);
 		
-		ApiResult<Gson> apiResult = postApi(imgfilterUrl, params);
+		ApiResult<Map> apiResult = postApi(imgfilterUrl, params);
 		
 		return apiResult;
 		
 	}
 	
-	public ApiResult<Gson> facecosmetic(int cosmeticId, String base64Image) throws UnsupportedEncodingException{
+	public ApiResult<Map> facecosmetic(int cosmeticId, String base64Image) throws UnsupportedEncodingException{
 		
 		Map<String,String> params = buildCommonParam();
 		
 		params.put("filter", String.valueOf(cosmeticId));
 		params.put("image", base64Image);
 		
-		ApiResult<Gson> apiResult = postApi(facecosmeticUrl, params);
+		ApiResult<Map> apiResult = postApi(facecosmeticUrl, params);
 		
 		return apiResult;
 		
